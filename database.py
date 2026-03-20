@@ -32,8 +32,9 @@ for name in names:
 #for roll, salary in roll_salary:
 #    print("Rollno=",roll,": Salary=",salary)
 
-cursor.execute("select * from giet where Name='Aman';")
+cursor.execute("select * from giet where Gender='M';")
 aman_names=cursor.fetchall()
 print("\nDetails of students named Aman in GIET:")
-print(aman_names)
+for aman in aman_names:
+    print(aman)
 connection.close()
