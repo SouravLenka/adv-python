@@ -26,9 +26,14 @@ print("Names and Addresses of students in GIET:")
 for name in names:
     print("Name=",name[0],": Address=",name[1])
 
-cursor.execute("select Rollno,Salary from giet")
-roll_salary=cursor.fetchall()
-print("\nRoll Numbers and Salaries of students in GIET:")
-for roll, salary in roll_salary:
-    print("Rollno=",roll,": Salary=",salary)
+#cursor.execute("select Rollno,Salary from giet")
+#roll_salary=cursor.fetchall()
+#print("\nRoll Numbers and Salaries of students in GIET:")
+#for roll, salary in roll_salary:
+#    print("Rollno=",roll,": Salary=",salary)
+
+cursor.execute("select * from giet where Name='Aman';")
+aman_names=cursor.fetchall()
+print("\nDetails of students named Aman in GIET:")
+print(aman_names)
 connection.close()
