@@ -53,4 +53,16 @@ if question==3:
     concatenated_tuple=tuple1+tuple2
     print("Concatenated tuple:",concatenated_tuple)
 
-#
+#4. Create a student marks dictionary, then add, update, delete entries, and display keys, values, and items.
+if question==4:
+    marks={'Alice':85,'Bob':90,'Charlie':78}
+    print("Initial marks:",marks)
+    marks['David']=92
+    print("After adding David:",marks)
+    marks['Alice']=88
+    print("After updating Alice's marks:",marks)
+    del marks['Charlie']
+    print("After deleting Charlie:",marks)
+    print("Keys:",marks.keys())
+    print("Values:",marks.values())
+    print("Items:",marks.items())
