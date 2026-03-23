@@ -112,26 +112,127 @@ if question==7:
         return topper
 
 
-
-
 #8. Create a contact book using a dictionary with options to add, search, delete, and list contacts.
+if question==8:
+    contact_book={}
+    def add_contact(name, phone):
+        contact_book[name]=phone
+    def search_contact(name):
+        return contact_book.get(name,"Contact not found")
+    def delete_contact(name):
+        if name in contact_book:
+            del contact_book[name]
+    def list_contacts():
+        for name, phone in contact_book.items():
+            print(f"{name}: {phone}")
+
 
 #9. Employee Attendance System
 #Build a loop-based menu system to add, remove, and display employee names stored in a dictionary. Use conditions and loops to control program flow.
-
+if question==9:
+    attendance={}
+    while True:
+        print("1. Add Employee")
+        print("2. Remove Employee")
+        print("3. Display Employees")
+        print("4. Exit")
+        choice=int(input("Enter your choice: "))
+        if choice==1:
+            name=input("Enter employee name: ")
+            attendance[name]=True
+        elif choice==2:
+            name=input("Enter employee name to remove: ")
+            if name in attendance:
+                del attendance[name]
+            else:
+                print("Employee not found.")
+        elif choice==3:
+            print("Employees present:")
+            for name in attendance:
+                print(name)
+        elif choice==4:
+            break
+        else:
+            print("Invalid choice. Please try again.")
 
 #10. Student Record Manager
 #Create a system where a user can enter multiple student records (name, roll number, marks). Use loops to add records and conditions to filter students based on pass/fail criteria. Store data using dictionaries and lists.
+if question==10:
+    student_records=[]
+    while True:
+        name=input("Enter student name: ")
+        roll_number=input("Enter roll number: ")
+        marks=int(input("Enter marks: "))
+        student_records.append({'name':name,'roll_number':roll_number,'marks':marks})
+        cont=input("Add another record? (y/n): ")
+        if cont.lower()!='y':
+            break
+    print("Student Records:")
+    for record in student_records:
+        status="Pass" if record['marks']>=40 else "Fail"
+        print(f"Name: {record['name']}, Roll Number: {record['roll_number']}, Marks: {record['marks']}, Status: {status}")
 
 #11. Restaurant Billing System
 #Display a menu with prices and allow users to order multiple items. Calculate the total bill with tax. Use loops for ordering, dictionaries for storing menu, and conditionals for bill logic.
+if question==11:
+    menu={
+        'Burger': 5.99,
+        'Pizza': 8.99,
+        'Salad': 4.99,
+        'Soda': 1.99
+    }
+    order={}
+    while True:
+        print("Menu:")
+        for item, price in menu.items():
+            print(f"{item}: ${price}")
+        choice=input("Enter the item you want to order (or 'done' to finish): ")
+        if choice.lower()=='done':
+            break
+        elif choice in menu:
+            quantity=int(input(f"Enter quantity of {choice}: "))
+            order[choice]=order.get(choice,0)+ quantity
+        else:
+            print("Item not on menu. Please try again.")
+    total=0
+    for item, quantity in order.items():
+        total+=menu[item]*quantity
+    tax=total*0.07
+    final_bill=total+tax
+    print(f"Total: ${total:.2f}")
+    print(f"Tax: ${tax:.2f}")
+    print(f"Final Bill: ${final_bill:.2f}")
 
 #12. Design and implement a data structure for Least Recently Used (LRU) cache. It should support get and put operations in O(1) time.
+if question==12:
+    class LRUCache:
+        def __init__(self, capacity):
+            self.cache={}
+            self.capacity=capacity
+            self.order=[]
+        
+        def get(self, key):
+            if key in self.cache:
+                self.order.remove(key)
+                self.order.append(key)
+                return self.cache[key]
+            return -1
+        
+        def put(self, key, value):
+            if key in self.cache:
+                self.order.remove(key)
+            elif len(self.cache)>=self.capacity:
+                lru_key=self.order.pop(0)
+                del self.cache[lru_key]
+            self.cache[key]=value
+            self.order.append(key)
 
 #13. Unique Character Extractor
 #Input a sentence and print characters that appear only once. Ignore spaces and punctuation. Use sets and loops to identify uniqueness.
 
+
 #14. Custom Power Function
+
 #Create a function that takes base and exponent as input and returns base^exponent using loops (not using pow()).
 
 #15. String Pattern Validator
