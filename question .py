@@ -229,28 +229,163 @@ if question==12:
 
 #13. Unique Character Extractor
 #Input a sentence and print characters that appear only once. Ignore spaces and punctuation. Use sets and loops to identify uniqueness.
-
+if question==13:
+    import string
+    sentence=input("Enter a sentence: ")
+    char_count={}
+    for char in sentence:
+        if char in string.ascii_letters:
+            char_count[char]=char_count.get(char,0)+1
+    unique_chars=[char for char, count in char_count.items() if count==1]
+    print("Unique characters:", unique_chars)
 
 #14. Custom Power Function
-
 #Create a function that takes base and exponent as input and returns base^exponent using loops (not using pow()).
+if question==14:
+    def custom_pow(base, exponent):
+        result=1
+        for _ in range(exponent):
+            result*=base
+        return result
+    base=float(input("Enter the base: "))
+    exponent=int(input("Enter the exponent: "))
+    print(f"{base}^{exponent} = {custom_pow(base, exponent)}")
 
 #15. String Pattern Validator
 #Input a string and check whether it’s a palindrome. Count total vowels, consonants, digits, and special characters using loops and conditions.
+if question==15:
+    import string
+    input_str=input("Enter a string: ")
+    is_palindrome=input_str==input_str[::-1]
+    vowel_count=0
+    consonant_count=0
+    digit_count=0
+    special_count=0
+    for char in input_str:
+        if char in 'aeiouAEIOU':
+            vowel_count+=1
+        elif char in string.ascii_letters:
+            consonant_count+=1
+        elif char in string.digits:
+            digit_count+=1
+        elif char in string.punctuation:
+            special_count+=1
+    print(f"Is palindrome: {is_palindrome}")
+    print(f"Vowels: {vowel_count}")
+    print(f"Consonants: {consonant_count}")
+    print(f"Digits: {digit_count}")
+    print(f"Special characters: {special_count}")
 
 #16. Design a School Management System that includes classes for Student, Teacher, and Admin, each with unique behaviors.
+if question==16:
+    class Student:
+        def __init__(self, name, roll_number):
+            self.name=name
+            self.roll_number=roll_number
+        
+        def attend_class(self):
+            print(f"{self.name} is attending class.")
+    
+    class Teacher:
+        def __init__(self, name, subject):
+            self.name=name
+            self.subject=subject
+        
+        def teach(self):
+            print(f"{self.name} is teaching {self.subject}.")
+    
+    class Admin:
+        def __init__(self, name):
+            self.name=name
+        
+        def manage_school(self):
+            print(f"{self.name} is managing the school.")
 
 #17. Implement a Library Management System that uses parameterized constructors to initialize books and members and destructors to log when books are removed.
+if question==17:
+    class Book:
+        def __init__(self, title, author):
+            self.title=title
+            self.author=author
+        
+        def __del__(self):
+            print(f"Book '{self.title}' by {self.author} has been removed from the library.")
+    
+    class Member:
+        def __init__(self, name, member_id):
+            self.name=name
+            self.member_id=member_id
 
 #18. Design a File Logger System
 #Problem: Create a class Logger that logs operations to a file. Use parameterized constructors to define the log file path.
 #Implement a destructor to automatically close the file when the object is destroyed. Use method overloading to support different types of logs (info, warning, error).
+if question==18:
+    class Logger:
+        def __init__(self, file_path):
+            self.file_path=file_path
+            self.file=open(self.file_path,'a')
+        
+        def log(self, message, level='INFO'):
+            log_entry=f"{level}: {message}\n"
+            self.file.write(log_entry)
+        
+        def __del__(self):
+            self.file.close()
 
 #19. Vehicle Rental System
 #Problem: Create a rental system with a base class Vehicle and subclasses Car, Bike, and Truck.
 #Include a rental rate for each and calculate the rental fee using overridden methods. Use class variables to track total vehicles rented.
-
+if question==19:
+    class Vehicle:
+        total_rented=0
+        
+        def __init__(self, make, model):
+            self.make=make
+            self.model=model
+        
+        def rent(self):
+            Vehicle.total_rented+=1
+            return f"Renting {self.make} {self.model}"
+    
+    class Car(Vehicle):
+        def rent(self):
+            return f"Renting Car: {self.make} {self.model} at $50/day"
+    
+    class Bike(Vehicle):
+        def rent(self):
+            return f"Renting Bike: {self.make} {self.model} at $20/day"
+    
+    class Truck(Vehicle):
+        def rent(self):
+            return f"Renting Truck: {self.make} {self.model} at $100/day"
 
 #20. Build a Mini Social Media Platform
 #Problem: Design classes for User, Post, and Comment. Users can post messages, like posts, and comment.
 #Use object relationships (e.g., posts have comments), class variables to count total posts, and override the string representation methods to print user-friendly content.
+if question==20:
+    class user:
+        total_posts=0
+        def __init__(self):
+            self.name=input("Enter your name: ")
+            self.posts=[]
+        def create_post(self):
+            content=input("Enter post content: ")
+            post=Post(content,self)
+            self.posts.append(post)
+            user.total_posts+=1
+    class Post:
+        def __init__(self, content, user):
+            self.content=content
+            self.user=user
+            self.likes=0
+            self.comments=[]
+        def like(self):
+            self.likes+=1
+        def add_comment(self, comment):
+            self.comments.append(comment)
+    class Comment:
+        def __init__(self, content, user):
+            self.content=content
+            self.user=user
+        
+        
