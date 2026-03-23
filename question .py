@@ -66,3 +66,26 @@ if question==4:
     print("Keys:",marks.keys())
     print("Values:",marks.values())
     print("Items:",marks.items())
+
+#5. Connect to a MySQL database, execute queries to retrieve and manipulate data, and handle exceptions.
+if question==5:
+    import mysql.connector
+
+    connection=mysql.connector.connect(
+    user='root',
+    password='prem@8260',
+    host='localhost',
+    port='3306',)
+    cur=connection.cursor()
+    try:
+        cur.execute("use tnp")
+        print("Database selected")
+        cur.execute("select Name,Address from giet;")
+        names=cur.fetchall()
+        print("Names and Addresses of students in GIET:")
+        for name in names:
+            print("Name=",name[0],": Address=",name[1])
+    except mysql.connector.Error as err:
+        print("Error:",err)
+    finally:
+        connection.close()
