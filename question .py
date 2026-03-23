@@ -85,8 +85,34 @@ if question==6:
     filtered_list=[x for x in mixed_list if not (isinstance(x,int) and x<10)]
     filtered_tuple=tuple(filtered_list)
     print("Filtered tuple:",filtered_tuple)
-    
+
 #7. Build a Student Record System using nested dictionaries/lists to add students, update marks, compute averages, and find toppers.
+if question==7:
+    students={
+        'Alice':{'marks':[85,90,78]},
+        'Bob':{'marks':[80,88,92]},
+        'Charlie':{'marks':[78,82,85]}
+    }
+    def add_student(name, marks):
+        students[name]={'marks':marks}
+    def update_marks(name, marks):
+        if name in students:
+            students[name]['marks']=marks
+    def compute_average(name):
+        if name in students:
+            return sum(students[name]['marks'])/len(students[name]['marks'])
+    def find_topper():
+        topper=None
+        highest_avg=0
+        for name in students:
+            avg=compute_average(name)
+            if avg>highest_avg:
+                highest_avg=avg
+                topper=name
+        return topper
+
+
+
 
 #8. Create a contact book using a dictionary with options to add, search, delete, and list contacts.
 
