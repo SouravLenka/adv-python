@@ -16,3 +16,13 @@ elif q==2:
     
 elif q==3:
     string="hello 12 hi 89.Howdy 34"    
+    result=re.findall("\d+",string)
+    print(result)
+
+elif q==4:
+    pattern="sourav"
+    data="sourav is a good boy,sourav is a good player"
+    result=re.finditer(pattern,data)
+    print(result)
+    for r in result:
+        print(r)
